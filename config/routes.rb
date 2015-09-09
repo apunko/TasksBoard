@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'tasks/index'
+
+  get 'tasks/create'
+
+  get 'tasks/update'
+
+  get 'tasks/destroy'
+
+  get 'tasks/new'
+
+  get 'tasks/show'
+
+  get 'tasks/edit'
+
   get 'users/index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

@@ -1,0 +1,11 @@
+<h1>Tasks#index</h1>
+<p>Find me in app/views/tasks/index.html.erb</p>
+
+<% @tasks.each do |task| %>
+  <p>
+    <%= task.title %>
+  </p>
+  <p>
+    <%= task.user.email %>
+  </p>
+<% end %>
