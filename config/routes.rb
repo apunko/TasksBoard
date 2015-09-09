@@ -1,22 +1,8 @@
 Rails.application.routes.draw do
-  get 'tasks/index'
-
-  get 'tasks/create'
-
-  get 'tasks/update'
-
-  get 'tasks/destroy'
-
-  get 'tasks/new'
-
-  get 'tasks/show'
-
-  get 'tasks/edit'
-
-  get 'users/index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root to: "application#home"
+  resources :tasks
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
