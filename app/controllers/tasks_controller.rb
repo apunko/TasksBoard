@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+
   def index
     @tasks = Task.all
   end
@@ -16,9 +18,18 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to @task, notice: 'Task was successfully updated.' 
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
   def new
@@ -30,6 +41,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
   end
 
   private
@@ -37,4 +49,5 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:title, :description, :level, :user_id)
     end
+
 end

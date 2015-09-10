@@ -3,9 +3,9 @@
 
 <% @tasks.each do |task| %>
   <p>
-    <%= task.title %>
-  </p>
-  <p>
-    <%= task.user.email %>
+    <%= task.title %> |
+    <%= task.user.email %> |
+    <%= link_to 'Edit', edit_task_path(task) %>
+    <%= link_to 'Delete', task_path(task), method: :delete%>
   </p>
 <% end %>

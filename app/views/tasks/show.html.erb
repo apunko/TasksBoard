@@ -3,3 +3,6 @@
 
 <%= @task.title %>
 <%= @task.user.email %>
+
+<%= link_to 'Edit', edit_task_path(@task) %>
+<%= link_to 'Delete', task_path(@task), method: :delete %>
