@@ -1,8 +1,44 @@
+<%= link_to 'All tasks', tasks_path%>
 <h1>Tasks#show</h1>
 <p>Find me in app/views/tasks/show.html.erb</p>
 
 <%= @task.title %>
 <%= @task.user.email %>
 
-<%= link_to 'Edit', edit_task_path(@task) %>
-<%= link_to 'Delete', task_path(@task), method: :delete %>
+<% if task_my?(@task, current_user) %>
+  <%= link_to 'Edit', edit_task_path(@task) %>
+  <%= link_to 'Delete', task_path(@task), method: :delete %> 
+  
+  <div id = "answers">
+    <%= render "answers/show"%>
+
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CreateAnswerModal">
+      Add answer
+    </button>
+
+    <!-- Modal -->
+    <% @answer = Answer.new %>
+    <%= simple_form_for @answer, multipart: true, remote: true, method: :post  do |f| %>
+    <div class="modal fade" id="CreateAnswerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header"> 
+            <button id ="CloseCreateAnswerButton" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Update</h4>
+          </div>
+          <div class="modal-body">
+            <div>
+              <%= f.input :value %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit %>
+            <%= f.hidden_field :task_id, value:  @task.id %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+<% end %>

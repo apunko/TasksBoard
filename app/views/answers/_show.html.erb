@@ -1,0 +1,7 @@
+<h1>Answers</h1>
+<% @task.answers.each do |answer|%>
+  <p> 
+    <%= answer.value %> | 
+    <%= link_to 'Delete', answer_path(answer), method: :delete %> 
+  </p>
+<% end %>

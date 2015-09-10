@@ -3,7 +3,7 @@
 
 <% @tasks.each do |task| %>
   <p>
-    <%= task.title %> |
+    <%= link_to task.title, task_path(task) %> | 
     <%= task.user.email %> |
     <%= link_to 'Edit', edit_task_path(task) %>
     <%= link_to 'Delete', task_path(task), method: :delete%>
