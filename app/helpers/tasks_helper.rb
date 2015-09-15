@@ -6,4 +6,8 @@ module TasksHelper
       false
     end
   end
+
+  def current_task_id
+    session[:current_task_id]
+  end
 end

@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
-  #before_action :my_task?, only: [:edit, :update, :destroy]
-
+  after_action :set_current_task_id, only: [:show, :edit, :update, :create]
   def index
     @tasks = Task.all
   end
@@ -51,4 +50,7 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :description, :level, :user_id)
     end
 
+    def set_current_task_id
+      session[:current_task_id] = @task.id
+    end
 end

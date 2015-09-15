@@ -1,0 +1,7 @@
+var afterAnswerAttemptButtonElement = $('.AnswerAttempt').next();
+if (afterAnswerAttemptButtonElement.hasClass("AnswerForm")) {
+  afterAnswerAttemptButtonElement.remove();
+} else { 
+  $('.AnswerAttempt').after($('<div class="AnswerForm">').
+    append("<%= escape_javascript(render('new')) %>"));
+}

@@ -14,8 +14,9 @@
   <%= link_to 'Out', destroy_user_session_path, :method => :delete %>
   <ul class="nav nav-tabs">
     <li role="presentation" class="active"> <%= link_to "Main", root_path %> </li>
-    <li role="presentation"> <%= link_to "Home", users_path %> </li>
+    <li role="presentation"> <%= link_to "Home", user_path(current_user) %> </li>
     <li role="presentation"><%= link_to "Tasks", tasks_path %></li>
+    <li role="presentation"><%= link_to "Attempts", answer_attempts_path %></li>
   </ul>
 <% else %>
   <%= link_to 'Sign in', new_user_session_path %> or <%= link_to 'Sing up', new_user_registration_path %>

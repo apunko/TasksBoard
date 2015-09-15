@@ -1,7 +1,6 @@
 <h1>Tasks#show</h1>
 <p>Find me in app/views/tasks/show.html.erb</p>
 <% my_task = my_task?(@task, current_user)%>
-
 <div> 
   <span class="TaskTitle">
     <%= @task.title %>
@@ -23,4 +22,6 @@
     <%= render "answers/index"%>
     <%= render "answers/add_button"%>
   </div>
+<% else %>
+  <%= link_to "Answer", new_answer_attempt_path, remote: true, class: "AnswerAttempt" %>
 <% end %>
