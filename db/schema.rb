@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20150915202439) do
 
   create_table "answer_attempts", force: :cascade do |t|
     t.string   "value",      limit: 255
-    t.string   "string",     limit: 255
     t.boolean  "result"
     t.integer  "task_id",    limit: 4
     t.integer  "user_id",    limit: 4

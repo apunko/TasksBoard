@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :tasks
+  has_many :answer_attempts
   def self.from_omniauth(auth, provider)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = "#{auth.uid}@#{auth.provider}.com"
