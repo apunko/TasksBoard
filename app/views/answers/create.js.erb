@@ -1,3 +1,8 @@
-$("#CloseCreateAnswerButton").click()
-$('#answers').html("")
-$('#answers').html("<%= escape_javascript(render('show')) %>")
+//$("#CloseCreateAnswerButton").click();
+//$("#CloseCreateAnswerButton").click();
+$('#CreateAnswerModal').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove()
+$('#answers').html("");
+$('#answers').html("<%= escape_javascript(render('index')) %>");
+$('#answers').append("<%= escape_javascript(render('add_button')) %>");

@@ -1,9 +1,25 @@
 class AnswersController < ApplicationController
-  
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+  #before_action :my_answer?, only: [:edit, :update, :destroy]
+
   def index
   end
 
   def edit
+    @answer = Answer.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update
+    @answer = Answer.find(params[:id])
+    @task = Task.find(@answer.task_id)
+    if @answer.update(value: params[:answer][:value])
+      redirect_to @task, notice: 'Answer was successfully updated.' 
+    else
+      redirect_to @task, notice: 'Answer was not updated.'
+    end
   end
 
   def new

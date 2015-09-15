@@ -1,5 +1,5 @@
 module TasksHelper
-  def task_my?(task, user)
+  def my_task?(task, user)
     begin
       user.tasks.find(task.id)
     rescue 
