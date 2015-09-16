@@ -6,7 +6,7 @@
     <%= @task.title %>
   </span> 
   <% if my_task %>
-    | <%= link_to 'Edit', edit_task_path(@task) %>
+    | <%= link_to 'Edit', edit_task_path(@task), data: { no_turbolink: true } %>
     | <%= link_to 'Delete', task_path(@task), method: :delete %> 
   <% end %>
 </div> 
@@ -14,7 +14,8 @@
   creator : <%= @task.user.email %>
 </div>
 <div>
-  description : <%= @task.description %>
+  description : 
+  <%= markdown(@task.description) %>
 </div>
 
 <% if my_task %>

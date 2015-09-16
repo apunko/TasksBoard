@@ -7,9 +7,10 @@
       <%= task.user.email %> |
       <%= link_to 'View', task_path(task) %> 
       <% if my_task?(task, current_user) %>
-        | <%= link_to 'Edit', edit_task_path(task) %>
+        | <%= link_to 'Edit', edit_task_path(task), data: { no_turbolink: true } %>
         | <%= link_to 'Delete', task_path(task), method: :delete%>
       <% end %>
     </li>
   <% end %>
 </ul>
+<%= link_to 'Create task', new_task_path, data: { no_turbolink: true } %>

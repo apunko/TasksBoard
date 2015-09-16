@@ -12,4 +12,6 @@
  *
  *= require_tree .
  *= require_self
+ *= require pagedown_bootstrap 
  */
+

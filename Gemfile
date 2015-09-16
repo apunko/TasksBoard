@@ -40,6 +40,9 @@ gem 'omniauth-vkontakte'
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
 
+gem 'pagedown-bootstrap-rails'
+gem "redcarpet"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
