@@ -1,10 +1,13 @@
 class Task < ActiveRecord::Base
+  belongs_to :user
+  has_many :answers, dependent: :destroy 
+  has_many :answer_attempts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
   acts_as_taggable
 
-  belongs_to :user
-  has_many :answers 
-  has_many :answer_attempts
-  has_many :comments
+  validates :title, :description, :level, :user_id, presence: true
+  validates :title, length: { in: 3..20 }
 
   def self.check_answer(task_id, value)
     begin

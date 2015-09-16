@@ -7,8 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body class = "center">
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div>
+  <span class="notice"><%= notice %></span>
+  <span class="alert"><%= alert %></span>
+</div>
 <% if user_signed_in? %>
   Welcome <%= current_user.email %>!
   <%= link_to 'Out', destroy_user_session_path, :method => :delete %>

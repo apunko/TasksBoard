@@ -1,4 +1,7 @@
 class AnswerAttemptsController < ApplicationController
+  include TasksHelper
+  include AnswerAttemptsHelper
+  
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
@@ -15,6 +18,7 @@ class AnswerAttemptsController < ApplicationController
 
   def create
     @attempt = AnswerAttempt.new(attempt_params)  
+    update_statistics(@attempt)
     @attempt.save
     redirect_to task_path(params[:answer_attempt][:task_id]), notice: @attempt.result.to_s
   end
@@ -22,8 +26,9 @@ class AnswerAttemptsController < ApplicationController
   private
 
     def attempt_params
-      attempt_params = params.require(:answer_attempt).permit(:value, :task_id)
+      attempt_params = params.require(:answer_attempt).permit(:value)
       attempt_params[:user_id] = current_user.id
+      attempt_params[:task_id] = current_task_id
       attempt_params[:result] = Task.check_answer(attempt_params[:task_id], attempt_params[:value])
       attempt_params
     end
