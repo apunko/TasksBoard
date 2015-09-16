@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require pagedown_bootstrap
 //= require pagedown_init
+//= require rails-jquery-tokeninput
 //= require turbolinks
 //= require_tree .
 
@@ -23,8 +24,17 @@ $(function() {
   $(document).ready(function () {
   //  alert("ready")
   });
+
+  var ENTER = 13;
+  $(".token-input-input-token-facebook").keyup(function (event) {
+    if (event.keyCode == ENTER) {
+      $("#search").blur();
+    }
+  });
   $(document).on('page:load', ready)
 });
+
+
 
 function ready(){
  // alert("load");

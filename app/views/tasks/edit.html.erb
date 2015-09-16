@@ -3,6 +3,9 @@
 
 <%= simple_form_for @task do |f| %>
   <%= f.input :title %>
+  <%= f.input :tag_list, as: :string, input_html: {
+      data: { tokeninput: { collection: @tags, options: @options } } }
+  %>
   <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 }%>
   <%= f.number_field :level, in: 1..3, step: 1, value: 1 %>
   <%= f.hidden_field :user_id, value:  current_user.id %>

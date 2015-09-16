@@ -11,6 +11,11 @@
   <% end %>
 </div> 
 <div>
+  <% @task.tags.each do |x| %>
+    <%= x %><br>
+  <% end %>
+</div>
+<div>
   creator : <%= @task.user.email %>
 </div>
 <div>

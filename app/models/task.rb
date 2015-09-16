@@ -1,4 +1,6 @@
 class Task < ActiveRecord::Base
+  acts_as_taggable
+
   belongs_to :user
   has_many :answers 
   has_many :answer_attempts
@@ -15,4 +17,8 @@ class Task < ActiveRecord::Base
     end  
     false 
   end 
+
+  def tag_list_tokens=(tokens)
+    self.tag_list = tokens.gsub("'", "")
+  end
 end

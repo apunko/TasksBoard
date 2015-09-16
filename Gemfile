@@ -43,6 +43,9 @@ gem 'simple_form'
 gem 'pagedown-bootstrap-rails'
 gem "redcarpet"
 
+gem 'rails-jquery-tokeninput'
+gem 'acts-as-taggable-on'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
