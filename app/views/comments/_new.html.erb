@@ -1,0 +1,5 @@
+<% @comment = Comment.new %>
+<%= simple_form_for @comment do |f| %>
+  <%= f.input :message, label: false %>
+  <%= f.button :submit, "Comment" %>
+<% end %>

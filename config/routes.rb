@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "application#home"
   resources :tasks 
   resources :answers
-  resources :comments, only: [:create, :new, :show, :destroy]
+  resources :comments, only: [:create, :destroy]
   resources :users, only: [:index, :show]
   resources :answer_attempts, only: [:index, :new, :create]
   # The priority is based upon order of creation: first created -> highest priority.

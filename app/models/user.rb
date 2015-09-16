@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :tasks
   has_many :answer_attempts
+  has_many :comments
+  
   def self.from_omniauth(auth, provider)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = "#{auth.uid}@#{auth.provider}.com"

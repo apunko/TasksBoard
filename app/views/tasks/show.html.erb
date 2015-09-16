@@ -31,3 +31,14 @@
 <% else %>
   <%= link_to "Answer", new_answer_attempt_path, remote: true, class: "AnswerAttempt" %>
 <% end %>
+<br>
+<% @task.comments.each do |comment|%>
+  <div>
+    <%= comment.message %> |
+    <%= link_to 'Delete', comment_path(comment), method: :delete %> 
+  </div>  
+<% end %>
+<br>
+<div>
+  <%= render "comments/new" %>
+</div>
