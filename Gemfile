@@ -46,6 +46,9 @@ gem "redcarpet"
 gem 'rails-jquery-tokeninput'
 gem 'acts-as-taggable-on'
 
+gem 'jdbc-mysql',      '~> 5.1.28', :platform => :jruby
+gem 'thinking-sphinx', '~> 3.1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
