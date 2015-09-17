@@ -22,16 +22,12 @@
 $(function() {
   init();
   $(document).ready(function () {
-  //  alert("ready")
+  // alert("ready")
   });
 
-  var ENTER = 13;
-  $(".token-input-input-token-facebook").keyup(function (event) {
-    if (event.keyCode == ENTER) {
-      $("#search").blur();
-    }
-  });
-  $(document).on('page:load', ready)
+  $(document).on('page:load', ready);
+  
+
 });
 
 

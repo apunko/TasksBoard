@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/search', to: 'application#search'
   resources :tasks 
   resources :answers
+  resources :ratings, only: :update
   resources :comments, only: [:create, :destroy]
   resources :users, only: [:index, :show]
   resources :answer_attempts, only: [:index, :new, :create]

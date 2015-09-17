@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916190030) do
+ActiveRecord::Schema.define(version: 20150917182440) do
 
   create_table "answer_attempts", force: :cascade do |t|
     t.string   "value",      limit: 255
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 20150916190030) do
 
   add_index "comments", ["task_id"], name: "index_comments_on_task_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "task_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "score",      limit: 4, default: 0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "ratings", ["task_id"], name: "index_ratings_on_task_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id",        limit: 4
@@ -107,5 +118,7 @@ ActiveRecord::Schema.define(version: 20150916190030) do
   add_foreign_key "answers", "tasks"
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
+  add_foreign_key "ratings", "tasks"
+  add_foreign_key "ratings", "users"
   add_foreign_key "tasks", "users"
 end

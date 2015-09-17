@@ -5,6 +5,30 @@
   <span class="TaskTitle">
     <%= @task.title %>
   </span> 
+  <p>Averate rating</p>
+  <div id="star"></div>
+
+  <p>Your rating</p>
+  <div id="user_star"></div>
+  <script>
+  $('#star').raty({
+    readOnly: true,
+    score: <%= @task.average_rating(@task.id) %>,
+    path: '/assets'
+  });
+
+  $('#user_star').raty({
+    score: <%= @rating.score %>,
+    path: '/assets',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings/' + <%= @rating.id %>,
+        type: 'PATCH',
+        data: { score: score }
+      });
+    }
+  });
+</script>
   <% if my_task %>
     | <%= link_to 'Edit', edit_task_path(@task), data: { no_turbolink: true } %>
     | <%= link_to 'Delete', task_path(@task), method: :delete %> 
