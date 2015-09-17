@@ -16,7 +16,11 @@
  *= require token-input-facebook
  */
 
- textarea {
-    width: 300px;
-    height: 150px;
-  }
+textarea {
+  width: 300px;
+  height: 150px;
+}
+
+.search_image img {
+  height: 15px;
+}

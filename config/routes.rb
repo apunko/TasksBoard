@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root to: "application#home"
+  get '/search', to: 'application#search'
   resources :tasks 
   resources :answers
   resources :comments, only: [:create, :destroy]
