@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918163543) do
+ActiveRecord::Schema.define(version: 20150918174353) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "image_url",   limit: 255
@@ -96,12 +96,14 @@ ActiveRecord::Schema.define(version: 20150918163543) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.integer  "level",       limit: 4
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "title",           limit: 255
+    t.text     "description",     limit: 65535
+    t.integer  "level",           limit: 4
+    t.integer  "user_id",         limit: 4
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "attempts_amount", limit: 4,     default: 0
+    t.integer  "solved_amount",   limit: 4,     default: 0
   end
 
   add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
@@ -124,6 +126,11 @@ ActiveRecord::Schema.define(version: 20150918163543) do
     t.datetime "confirmation_sent_at"
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
+    t.integer  "rate",                   limit: 4,   default: 0
+    t.integer  "attempts_amount",        limit: 4,   default: 0
+    t.integer  "solved_amount",          limit: 4,   default: 0
+    t.integer  "comments_amount",        limit: 4,   default: 0
+    t.integer  "own_tasks_amount",       limit: 4,   default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
