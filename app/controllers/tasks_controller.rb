@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
   after_action :set_current_task_id, only: [:show, :edit, :update, :create]
   before_action :create_options_tags, only: [:edit, :new]
+  after_action :check_next_achievements, only: :create
   
   def index
     @tasks = Task.all
@@ -18,7 +19,7 @@ class TasksController < ApplicationController
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
       else
-        format.html { redirect_to new_task_url }
+        format.html { redirect_to new_task_url, notice: "something wrong" }
       end
     end
   end
@@ -72,4 +73,9 @@ class TasksController < ApplicationController
       session[:current_task_id] = @task.id
     end
 
+    def check_next_achievements
+      if current_user.tasks.count == 5
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 5, amount: 1)
+      end
+    end
 end

@@ -3,7 +3,8 @@ class AnswerAttemptsController < ApplicationController
   include AnswerAttemptsHelper
   
   before_action :authenticate_user!, only: [:new, :create]
-
+  after_action :check_next_achievements, only: :create
+  
   def index
     @all = AnswerAttempt.all
   end
@@ -18,8 +19,8 @@ class AnswerAttemptsController < ApplicationController
 
   def create
     @attempt = AnswerAttempt.new(attempt_params)  
-    update_statistics(@attempt)
     @attempt.save
+    current_user.update_rate(@attempt)
     redirect_to task_path(params[:answer_attempt][:task_id]), notice: @attempt.result.to_s
   end
 
@@ -31,5 +32,35 @@ class AnswerAttemptsController < ApplicationController
       attempt_params[:task_id] = current_task_id
       attempt_params[:result] = Task.check_answer(attempt_params[:task_id], attempt_params[:value])
       attempt_params
+    end
+
+    def check_next_achievements
+      attempts = current_user.answer_attempts
+      last_attempt = attempts.last
+      puts attempts.to_a
+      i = 0
+      attempts.each do |attempt|
+        puts attempt.to_a
+        if attempt.result == true
+          i += 1 
+        end
+      end
+      if i == 5
+        puts "==5"
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 3, amount: 1)
+      end
+      if last_attempt.result == true
+        puts last_attempt.to_a + " true"
+        attempts = AnswerAttempt.where(task_id: last_attempt.task_id, result: true)
+        attempts.each do |x|
+          puts "1)" + x.to_a
+        end
+        if attempts.count == 1
+          puts "count == 1"
+          record = AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 2)
+          record.amount += 1
+          record.save
+        end
+      end
     end
 end

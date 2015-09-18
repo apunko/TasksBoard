@@ -1,2 +1,8 @@
+<%= @user.rate %>
 Show now!
+
+<% achievements = @user.get_achievements %>
+<% achievements.each do |achievement|  %>
+  <%= image_tag(achievement.image_url) %>
+<% end %>
 <%= link_to 'Create task', new_task_path, data: { no_turbolink: true } %>

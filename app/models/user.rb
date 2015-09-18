@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :ratings
   has_many :achieving_records
-  has_many :achieving_records, through: :achieving_records
+  has_many :achievements, through: :achieving_records
+
+  after_create :gain_welcome_achievement
 
   def self.from_omniauth(auth, provider)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -18,5 +20,24 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.confirmed_at = DateTime.now 
     end
+  end
+
+  def get_achievements
+    achievements = []
+    self.achieving_records.each do |record|
+      record_achievement = Achievement.find(record.achievement_id)
+      record.amount.times { achievements << record_achievement }
+    end  
+    achievements
+  end
+
+  def update_rate(attempt)
+    self.rate += Task.find(attempt.task_id).level
+  end
+
+  private 
+
+  def gain_welcome_achievement
+    AchievingRecord.create(user_id: current_user.id, achievement_id: 1, amount: 1)
   end
 end

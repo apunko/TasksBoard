@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   include TasksHelper
 
+  after_action :check_next_achievements, only: :create
+
   def create
     comment = Comment.new(comment_params)
     @task = Task.find(current_task_id)
@@ -21,6 +23,12 @@ class CommentsController < ApplicationController
   end
 
   private
+
+    def check_next_achievements
+      if current_user.comments.count == 5
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 4, amount: 1)
+      end
+    end
 
     def comment_params
       params_hash = params.require(:comment).permit(:message)
