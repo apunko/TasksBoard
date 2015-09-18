@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917182440) do
+ActiveRecord::Schema.define(version: 20150918163543) do
+
+  create_table "achievements", force: :cascade do |t|
+    t.string   "image_url",   limit: 255
+    t.string   "title",       limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "achieving_records", force: :cascade do |t|
+    t.integer  "user_id",        limit: 4
+    t.integer  "achievement_id", limit: 4
+    t.integer  "amount",         limit: 4, default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "achieving_records", ["achievement_id"], name: "index_achieving_records_on_achievement_id", using: :btree
+  add_index "achieving_records", ["user_id"], name: "index_achieving_records_on_user_id", using: :btree
 
   create_table "answer_attempts", force: :cascade do |t|
     t.string   "value",      limit: 255
@@ -113,6 +132,8 @@ ActiveRecord::Schema.define(version: 20150917182440) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
+  add_foreign_key "achieving_records", "achievements"
+  add_foreign_key "achieving_records", "users"
   add_foreign_key "answer_attempts", "tasks"
   add_foreign_key "answer_attempts", "users"
   add_foreign_key "answers", "tasks"
