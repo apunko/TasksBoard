@@ -7,7 +7,7 @@ asdfasdf
     <div class="col-xs-offset-1">
       <h1><%= @task.title %></h1>
       creator: 
-      <%= @task.user.email %>
+      <%= link_to @task.user.name,  user_path(@task.user) %>
     </div>
   </div>
   <div class="col-xs-6">
@@ -22,9 +22,12 @@ asdfasdf
     <%= markdown(@task.description) %>
     <% @task.comments.each do |comment|%>
       <div class="well">
+        <% if current_user.my_comment?(comment) %>
+          <button class="close">&times;</button>
+          <%= link_to 'Delete', comment_path(comment), method: :delete, class: "hidden" %> 
+        <% end %>
+        <%= link_to comment.user.name, user_path(comment.user) %><br>
         <%= comment.message %>
-        <button class="close">&times;</button>
-        <%= link_to 'Delete', comment_path(comment), method: :delete, class: "hidden" %> 
       </div>  
     <% end %>
     <br>
@@ -43,7 +46,11 @@ asdfasdf
             <%= render "answers/add_button"%>
           </div>
         <% else %>
-          <%= link_to "Answer", new_answer_attempt_path, remote: true, class: "AnswerAttempt" %>
+          <% if !current_user.solved?(@task)%>
+            <%= link_to "Answer", new_answer_attempt_path, remote: true, class: "AnswerAttempt" %>
+          <% else %>
+            <%= image_tag("done.png") %>
+          <% end %>
         <% end %>
       </div>
     </div>

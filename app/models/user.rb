@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def solved?(task)
+    attempt = AnswerAttempt.where(task_id: task.id, user_id: self.id, result: true)
+    attempt.count > 0 ? true : false
+  end
+
   def get_achievements
     achievements = []
     self.achieving_records.each do |record|
@@ -36,6 +41,10 @@ class User < ActiveRecord::Base
       self.rate += Task.find(attempt.task_id).level
       self.save
     end
+  end
+
+  def my_comment?(comment)
+    comment.user_id == self.id ? true : false 
   end
 
   private 
