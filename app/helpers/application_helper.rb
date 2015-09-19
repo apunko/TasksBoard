@@ -13,4 +13,7 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
 
+  def most_used_tags
+    ActsAsTaggableOn::Tag.most_used(20)
+  end
 end

@@ -1,1 +1,12 @@
-MyHome
+<div class="row">
+  <div class="col-xs-8">
+    MyHome
+  </div>
+  <div class="col-xs-4">
+    <div class="tags"> 
+      <% most_used_tags.each do |tag| %>
+        <%= link_to tag.name, { :action => :search, :q => tag.name } %>
+      <% end %>
+    </div>
+  </div>
+</div>

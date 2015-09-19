@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   after_action :set_current_task_id, only: [:show, :edit, :update, :create]
   before_action :create_options_tags, only: [:edit, :new]
   after_action :check_next_achievements, only: :create
-  
+
   def index
     @tasks = Task.all
   end
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
   end
 
   def create_options_tags
-    @tags = [{ name: 'Hong Kong'}, { name: 'Jamaica'}]
+    @tags = [{ name: 'Hong Kong'}, { name: 'Jamaica'}, { name: 'Minsk'}, { name: 'Moscow'}, { name: 'Mensk'}, { name: 'Mascow'}]
     @options = { theme: 'facebook', tokenValue: 'name', allowCustomEntry: true, preventDuplicates: true, minChars: 2 }
   end
 

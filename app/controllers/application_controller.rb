@@ -20,13 +20,10 @@ class ApplicationController < ActionController::Base
     comments = Comment.search @query
     tags = Tag.search @query
     @tasks = Task.search @query
-    
-    tags.each do |tag|
-      task_id = tag.task_id
-      task = Task.find(task_id)
-      if task
-        @tasks << task
-      end 
+        
+    Task.tagged_with(@query).each do |task|
+      puts task.to_s
+      @tasks << task
     end
 
     comments.each do |comment|
