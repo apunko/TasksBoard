@@ -14,6 +14,7 @@
  *= require_self
  *= require pagedown_bootstrap 
  *= require token-input-facebook
+ *= require editable/bootstrap-editable
  */
 
 textarea {

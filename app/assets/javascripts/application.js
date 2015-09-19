@@ -16,8 +16,12 @@
 //= require pagedown_bootstrap
 //= require pagedown_init
 //= require rails-jquery-tokeninput
+//= require editable/bootstrap-editable
+//= require editable/rails
 //= require turbolinks
 //= require_tree .
+
+
 
 $(function() {
   init();
@@ -26,7 +30,7 @@ $(function() {
   });
 
   $(document).on('page:load', ready);
-  
+  $('.editable').editable()
 
 });
 

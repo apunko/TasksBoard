@@ -4,6 +4,9 @@
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( markitup/skins/markitup/bg-container.png )
 ActsAsTaggableOn.force_binary_collation = true
+Rails.application.config.assets.precompile += %w( editable/loading.gif )
+Rails.application.config.assets.precompile += %w( editable/clear.png )
+
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 
