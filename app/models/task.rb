@@ -4,7 +4,9 @@ class Task < ActiveRecord::Base
   has_many :answer_attempts
   has_many :comments, dependent: :destroy
   has_many :ratings, dependent: :destroy
+  
   acts_as_taggable
+  
   validates :title, presence: true
   validates :description, :level, :user_id, presence: true
   validates :title, length: { in: 3..20 }
@@ -25,20 +27,4 @@ class Task < ActiveRecord::Base
   def tag_list_tokens=(tokens)
     self.tag_list = tokens.gsub("'", "")
   end
-
-  def average_rating(id)
-    ratings = Rating.where(task_id: id)
-    @result = 0;
-    if ratings
-      sum = 0
-      ratings.each do |rate|
-        sum += rate.score
-      end
-      if ratings.length > 0
-        @result = (sum / ratings.length).to_i
-      end
-    end
-    @result
-  end
-
 end

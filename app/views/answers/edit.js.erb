@@ -1,4 +1,4 @@
-
+$(".alert").
 var editAnswerDiv = $('a#'+<%= @answer.id %>).next();
 if (editAnswerDiv.hasClass("EditAnswerDiv")) {
   editAnswerDiv.remove();
@@ -6,3 +6,4 @@ if (editAnswerDiv.hasClass("EditAnswerDiv")) {
   $('a#' + <%= @answer.id%>).after($('<div class="EditAnswerDiv">').
     append("<%= escape_javascript(render('edit')) %>"));
 }
+

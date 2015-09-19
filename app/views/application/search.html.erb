@@ -1,13 +1,21 @@
-<ul>
-  <% @tasks.each do |task| %>
-    <li>
-      <%= link_to task.title, task_path(task) %> | 
-      <%= task.user.email %> |
-      <%= link_to 'View', task_path(task) %> 
-      <% if my_task?(task, current_user) %>
-        | <%= link_to 'Edit', edit_task_path(task), data: { no_turbolink: true } %>
-        | <%= link_to 'Delete', task_path(task), method: :delete%>
+<div class="row">
+  <div class="col-xs-3">
+
+  </div>
+  <div class="col-xs-6">
+    <h3>Search Results:</h3>
+    <ul>
+      <% @tasks.each do |task| %>
+        <li>
+          <%= link_to task.title, task_path(task) %> | 
+          <%= task.user.email %> |
+          <%= link_to 'View', task_path(task) %> 
+          <% if my_task?(task, current_user) %>
+            | <%= link_to 'Edit', edit_task_path(task), data: { no_turbolink: true } %>
+            | <%= link_to 'Delete', task_path(task), method: :delete%>
+          <% end %>
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    </ul>
+  </div>
+</div>

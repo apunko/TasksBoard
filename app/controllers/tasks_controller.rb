@@ -43,7 +43,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
-    average_rating = @task.average_rating(params[:id])
+    average_rating = Rating.average_rating(params[:id])
     @rating = Rating.where(task_id: @task.id, user_id: current_user.id).first
     if !@rating  
       @rating = Rating.create(task_id: @task.id, user_id: current_user.id, score: average_rating) 

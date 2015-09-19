@@ -1,68 +1,47 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
 <% my_task = my_task?(@task, current_user)%>
-<div>
-  <span class="TaskTitle">
-    <%= @task.title %>
-  </span> 
-  <p>Averate rating</p>
-  <div id="star"></div>
-
-  <p>Your rating</p>
-  <div id="user_star"></div>
-  <script>
-  $('#star').raty({
-    readOnly: true,
-    score: <%= @task.average_rating(@task.id) %>,
-    path: '/assets'
-  });
-
-  $('#user_star').raty({
-    score: <%= @rating.score %>,
-    path: '/assets',
-    click: function(score, evt) {
-      $.ajax({
-        url: '/ratings/' + <%= @rating.id %>,
-        type: 'PATCH',
-        data: { score: score }
-      });
-    }
-  });
-</script>
-  <% if my_task %>
-    | <%= link_to 'Edit', edit_task_path(@task), data: { no_turbolink: true } %>
-    | <%= link_to 'Delete', task_path(@task), method: :delete %> 
-  <% end %>
-</div> 
-<div>
-  <% @task.tags.each do |x| %>
-    <%= x %><br>
-  <% end %>
-</div>
-<div>
-  creator : <%= @task.user.email %>
-</div>
-<div>
-  description : 
-  <%= markdown(@task.description) %>
-</div>
-
-<% if my_task %>
-  <div id = "answers">
-    <%= render "answers/index"%>
-    <%= render "answers/add_button"%>
+<div class="row">
+  <div class="col-xs-3">
+    <div class="col-xs-offset-1">
+      <h1><%= @task.title %></h1>
+      creator: 
+      <%= @task.user.email %>
+    </div>
   </div>
-<% else %>
-  <%= link_to "Answer", new_answer_attempt_path, remote: true, class: "AnswerAttempt" %>
-<% end %>
-<br>
-<% @task.comments.each do |comment|%>
-  <div>
-    <%= comment.message %> |
-    <%= link_to 'Delete', comment_path(comment), method: :delete %> 
+  <div class="col-xs-6">
+    <div id="star"></div>
+    <div id="user_star"></div>
+    <%= render "script"%>
+    <div>
+      <% @task.tags.each do |x| %>
+        <%= x %><br>
+      <% end %>
+    </div>
+    <%= markdown(@task.description) %>
+    <% @task.comments.each do |comment|%>
+      <div>
+        <%= comment.message %> |
+        <%= link_to 'Delete', comment_path(comment), method: :delete %> 
+      </div>  
+    <% end %>
+    <br>
+    <div>
+      <%= render "comments/new" %>
+    </div>
   </div>  
-<% end %>
-<br>
-<div>
-  <%= render "comments/new" %>
+  <div class="col-xs-3">
+    <div "row">
+      <div class="col-xs-9">
+        <% if my_task %>
+          | <%= link_to 'Delete', task_path(@task), method: :delete %> 
+          | <%= link_to 'Edit', edit_task_path(@task), data: { no_turbolink: true } %>
+          <div id = "answers">
+            <%= render "answers/index"%>
+            <%= render "answers/add_button"%>
+          </div>
+        <% else %>
+          <%= link_to "Answer", new_answer_attempt_path, remote: true, class: "AnswerAttempt" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

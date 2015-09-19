@@ -1,7 +1,13 @@
-<h1>Users#index</h1>
-<%= link_to 'Download PDF', download_image_path %>
-<p>Find me in app/views/users/index.html.erb</p>
-<% @users.each do |user| %>
-  <%= link_to user.email, user_path(user) %>
-  <p></p>
-<% end %>
+<div class="row">
+  <div class="col-xs-2">
+    <h1>Users</h1>
+  </div>
+  <div class="col-xs-7">
+    <% @users.each do |user| %>
+      <ul>
+        <li><%= link_to user.email, user_path(user) %></li>
+      </ul>
+    <% end %>
+  </div>
+</div>
+

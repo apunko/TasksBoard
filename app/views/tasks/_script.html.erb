@@ -1,0 +1,19 @@
+<script>
+  $('#star').raty({
+    readOnly: true,
+    score: <%= Rating.average_rating(@task.id) %>,
+    path: '/assets'
+  });
+
+  $('#user_star').raty({
+    score: <%= @rating.score %>,
+    path: '/assets',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings/' + <%= @rating.id %>,
+        type: 'PATCH',
+        data: { score: score }
+      });
+    }
+  });
+</script>

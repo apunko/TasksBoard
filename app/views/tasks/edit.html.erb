@@ -1,13 +1,14 @@
-<h1>Tasks#edit</h1>
-<p>Find me in app/views/tasks/edit.html.erb</p>
-
-<%= simple_form_for @task do |f| %>
-  <%= f.input :title %>
-  <%= f.input :tag_list, as: :string, input_html: {
-      data: { tokeninput: { collection: @tags, options: @options } } }
-  %>
-  <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 }%>
-  <%= f.number_field :level, in: 1..3, step: 1, value: 1 %>
-  <%= f.button :submit %>
-<% end %>
-<%= link_to 'Delete', task_path(@task), method: :delete %>
+<div class="row">
+  <div class="col-xs-3">
+    <h1>Tasks#edit</h1>
+    <p>Find me in app/views/tasks/edit.html.erb</p>
+  </div>
+  <div class="col-xs-6">
+    <%= render "task_form"%>
+  </div>
+  <div class="col-xs-3">
+    <button>
+      <%= link_to 'Delete', task_path(@task), method: :delete %>
+    </button>
+  </div>
+</div>

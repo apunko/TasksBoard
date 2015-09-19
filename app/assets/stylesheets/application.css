@@ -24,3 +24,7 @@ textarea {
 .search_image img {
   height: 15px;
 }
+
+ul.dropdown-menu li a {
+  color: blue;
+}
