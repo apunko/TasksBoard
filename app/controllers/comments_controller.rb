@@ -28,6 +28,18 @@ class CommentsController < ApplicationController
       if current_user.comments.count == 5
         AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 4, amount: 1)
       end
+      if current_user.comments.count == 10
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 8, amount: 1)
+      end
+      if current_user.comments.count == 20
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 11, amount: 1)
+      end
+      if current_user.comments.count == 50
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 14, amount: 1)
+      end
+      if current_user.comments.count == 100
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 17, amount: 1)
+      end
     end
 
     def comment_params

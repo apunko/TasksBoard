@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root to: "application#home"
   get '/search', to: 'application#search'
+  get '/download_image', to: 'application#download_image', as: :download_image
   resources :tasks 
   resources :answers
   resources :ratings, only: :update

@@ -46,17 +46,25 @@ class AnswerAttemptsController < ApplicationController
         end
       end
       if i == 5
-        puts "==5"
         AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 3, amount: 1)
       end
+      if i == 10
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 7, amount: 1)
+      end
+      if i == 20
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 10, amount: 1)
+      end
+      if i == 50
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 13, amount: 1)
+      end
+      if i == 100
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 16, amount: 1)
+      end
       if last_attempt.result == true
-        puts last_attempt.to_a + " true"
         attempts = AnswerAttempt.where(task_id: last_attempt.task_id, result: true)
         attempts.each do |x|
-          puts "1)" + x.to_a
         end
         if attempts.count == 1
-          puts "count == 1"
           record = AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 2)
           record.amount += 1
           record.save

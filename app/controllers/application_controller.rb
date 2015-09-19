@@ -8,6 +8,13 @@ class ApplicationController < ActionController::Base
   def home
   end
 
+  def download_image
+    Achievement.generate_image_of_achievements(current_user)
+    send_file("#{Rails.root}/app/assets/images/output.jpg",
+    filename: "your_custom_file_name.jpg",
+    type: "image/jpeg")
+  end
+
   def search
     @query = params[:q]
     comments = Comment.search @query

@@ -15,12 +15,10 @@ class TasksController < ApplicationController
         @task.tag_list.add(tag)
       end
     end
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-      else
-        format.html { redirect_to new_task_url, notice: "something wrong" }
-      end
+    if @task.save
+      redirect_to @task, notice: 'Task was successfully created.' 
+    else
+      redirect_to new_task_url, notice: "Can't create task. Check out params."
     end
   end
 
@@ -76,6 +74,18 @@ class TasksController < ApplicationController
     def check_next_achievements
       if current_user.tasks.count == 5
         AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 5, amount: 1)
+      end
+      if current_user.tasks.count == 10
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 9, amount: 1)
+      end
+      if current_user.tasks.count == 20
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 12, amount: 1)
+      end
+      if current_user.tasks.count == 50
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 15, amount: 1)
+      end
+      if current_user.tasks.count == 100
+        AchievingRecord.find_or_create_by(user_id: current_user.id, achievement_id: 18, amount: 1)
       end
     end
 end
