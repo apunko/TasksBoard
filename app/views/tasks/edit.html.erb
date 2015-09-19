@@ -1,14 +1,19 @@
 <div class="row">
   <div class="col-xs-3">
-    <h1>Tasks#edit</h1>
-    <p>Find me in app/views/tasks/edit.html.erb</p>
+    <div class="col-xs-offset-1">
+      <h1>Edit page:</h1>
+    </div>
   </div>
   <div class="col-xs-6">
     <%= render "task_form"%>
   </div>
   <div class="col-xs-3">
-    <button>
-      <%= link_to 'Delete', task_path(@task), method: :delete %>
-    </button>
+    <%= link_to 'Delete', task_path(@task), method: :delete %>
+    <div id = "answers">
+      <div class="col-xs-8">
+        <%= render "answers/index"%>
+      </div>
+      <%= render "answers/add_button"%>
+    </div>
   </div>
 </div>

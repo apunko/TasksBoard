@@ -13,10 +13,14 @@ class Task < ActiveRecord::Base
 
   def self.check_answer(task_id, value)
     begin
-      @task = Task.find(task_id)
-      @true_answers = @task.answers
-      @true_answers.each do |true_answer|
-        return true if true_answer.value == value
+      task = Task.find(task_id)
+      true_answers = task.answers
+      true_answers.each do |true_answer|
+        if true_answer.value == value
+          puts "true_answer value = " + true_answer.value
+          puts "value"
+          return true 
+        end
       end
     rescue
       false

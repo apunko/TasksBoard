@@ -3,7 +3,12 @@
   <%= f.input :tag_list, as: :string, input_html: {
       data: { tokeninput: { collection: @tags, options: @options } } }
   %>
+  <%= f.label "Level:"%>
+  <%= f.select(:level) do %>
+    <% [['Easy', 1], ['Normal', 2], ['Hard', 3]].each do |c| -%>
+      <%= content_tag(:option, c.first, value: c.last) %>
+    <% end %>
+  <% end %>
   <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 } %>
-  <%= f.number_field :level, in: 1..3, step: 1, value: 1 %>
   <%= f.button :submit %>
 <% end %>

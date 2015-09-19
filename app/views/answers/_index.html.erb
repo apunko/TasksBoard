@@ -1,8 +1,10 @@
 <h3>Answers:</h3>
-<% @task.answers.each do |answer|%>
-  <div> 
-    <%= answer.value %> | 
-    <%= link_to 'Delete', answer_path(answer), method: :delete %> |
-    <%= link_to 'Edit', edit_answer_path(answer), remote: true, class: "EditAnswerLink", id: answer.id %>  
-  </div>
-<% end %>
+<ul>
+  <% @task.answers.each do |answer|%>
+    <li> 
+      <%= answer.value %> | 
+      <%= link_to 'Delete', answer_path(answer), method: :delete %> |
+      <%= link_to 'Edit', edit_answer_path(answer), remote: true, class: "EditAnswerLink", id: answer.id %>  
+    </li>
+  <% end %>
+</ul>

@@ -1,5 +1,5 @@
 <%= simple_form_for @attempt do |f| %>
-  <%= f.input :value, lable: false %>
+  <%= f.input :value, label: false, autocomplete: "off"  %>
   <%= f.hidden_field :task_id, value:  current_task_id %>
   <%= f.button :submit, "Submit" %>
 <% end %>

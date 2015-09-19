@@ -11,7 +11,7 @@
   </div>
   <div class="col-xs-7">
     <% achievements = @user.get_achievements %>
-    <% achievements.each do |achievement|  %>
+    <% achievements.each do |achievement| %>
       <%= image_tag(achievement.image_url) %>
     <% end %>
   </div>

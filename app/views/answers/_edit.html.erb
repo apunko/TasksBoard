@@ -1,4 +1,6 @@
-<%= simple_form_for @answer do |f| %>
-  <%= f.input :value, label: false %>
-  <%= f.button :submit %>
-<% end %>
+<p>
+  <%= simple_form_for @answer do |f| %>
+    <%= f.input :value, label: false, autocomplete: "off" %>
+    <%= f.button :submit %>
+  <% end %>
+</p>

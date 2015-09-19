@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CreateAnswerModal">
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateAnswerModal">
   Add answer
 </button>
 
@@ -12,16 +12,17 @@
           <button id ="CloseCreateAnswerButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel">Update</h4>
+          <h4 class="modal-title" id="myModalLabel">Add Answer</h4>
         </div>
         <div class="modal-body">
           <div>
-            <%= f.input :value %>
+            <%= f.input :value  %>
           </div>
         </div>
         <div class="modal-footer">
-          <%= f.submit %>
+          <%= f.submit class: "btn btn-default" %>
           <%= f.hidden_field :task_id, value:  @task.id %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>

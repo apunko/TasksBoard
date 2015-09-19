@@ -19,9 +19,9 @@ class AnswerAttemptsController < ApplicationController
 
   def create
     @attempt = AnswerAttempt.new(attempt_params)  
-    @attempt.save
     current_user.update_rate(@attempt)
-    redirect_to task_path(params[:answer_attempt][:task_id]), notice: @attempt.result.to_s
+    @attempt.save
+    redirect_to task_path(params[:answer_attempt][:task_id]), notice: "Your answer was " + @attempt.result.to_s
   end
 
   private
@@ -37,10 +37,8 @@ class AnswerAttemptsController < ApplicationController
     def check_next_achievements
       attempts = current_user.answer_attempts
       last_attempt = attempts.last
-      puts attempts.to_a
       i = 0
       attempts.each do |attempt|
-        puts attempt.to_a
         if attempt.result == true
           i += 1 
         end

@@ -1,4 +1,7 @@
 <% my_task = my_task?(@task, current_user)%>
+<div hidden>
+asdfasdf
+</div>
 <div class="row">
   <div class="col-xs-3">
     <div class="col-xs-offset-1">
@@ -18,9 +21,10 @@
     </div>
     <%= markdown(@task.description) %>
     <% @task.comments.each do |comment|%>
-      <div>
-        <%= comment.message %> |
-        <%= link_to 'Delete', comment_path(comment), method: :delete %> 
+      <div class="well">
+        <%= comment.message %>
+        <button class="close">&times;</button>
+        <%= link_to 'Delete', comment_path(comment), method: :delete, class: "hidden" %> 
       </div>  
     <% end %>
     <br>

@@ -32,7 +32,10 @@ class User < ActiveRecord::Base
   end
 
   def update_rate(attempt)
-    self.rate += Task.find(attempt.task_id).level
+    if attempt.result == true
+      self.rate += Task.find(attempt.task_id).level
+      self.save
+    end
   end
 
   private 
