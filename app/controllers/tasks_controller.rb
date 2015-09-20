@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   after_action :check_next_achievements, only: :create
 
   def index
-    @tasks = Task.all
+    @tasks = Task.order(:title).page params[:page]
   end
 
   def create

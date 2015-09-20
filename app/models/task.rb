@@ -11,6 +11,8 @@ class Task < ActiveRecord::Base
   validates :description, :level, :user_id, presence: true
   validates :title, length: { in: 3..20 }
 
+  paginates_per 10
+
   def self.check_answer(task_id, value)
     begin
       task = Task.find(task_id)

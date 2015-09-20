@@ -8,6 +8,7 @@
         <li><%= link_to user.email, user_path(user) %></li>
       </ul>
     <% end %>
+    <%= paginate @users %>
   </div>
 </div>
 

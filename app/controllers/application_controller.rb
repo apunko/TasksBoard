@@ -33,6 +33,5 @@ class ApplicationController < ActionController::Base
         @tasks << task
       end 
     end
-
   end
 end
