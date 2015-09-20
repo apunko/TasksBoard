@@ -21,3 +21,16 @@
 //= require turbolinks
 //= require_tree .
 
+$(function (){
+  $('#user_star').raty({
+    score: 0,
+    path: '/assets',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings',
+        type: 'POST',
+        data: { score: score  }
+      });
+    }
+  });
+})

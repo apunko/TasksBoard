@@ -19,9 +19,22 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth, provider)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = "#{auth.uid}@#{auth.provider}.com"
+      user.name = "#{auth.uid}@#{auth.provider}"
       user.password = Devise.friendly_token[0,20]
       user.confirmed_at = DateTime.now 
     end
+  end
+
+  def rate_task?(task) 
+    rate = Rating.find_by(task_id: task.id, user_id: self.id)
+    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    puts rate.class
+    puts rate
+    if rate 
+      return true
+    else
+      return false
+    end  
   end
 
   def solved?(task)

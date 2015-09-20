@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/download_image', to: 'application#download_image', as: :download_image
   resources :tasks 
   resources :answers
-  resources :ratings, only: :update
+  resources :ratings, only: :create
   resources :comments, only: [:create, :destroy]
   resources :users, only: [:index, :show, :update]
   resources :answer_attempts, only: [:index, :new, :create]
