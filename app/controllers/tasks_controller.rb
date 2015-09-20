@@ -18,7 +18,8 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.' 
     else
-      redirect_to new_task_url, notice: "Can't create task. Check out params."
+      flash[:error] = @task.errors.messages
+      redirect_to new_task_url
     end
   end
 
@@ -55,7 +56,7 @@ class TasksController < ApplicationController
   end
 
   def create_options_tags
-    @tags = [{ name: 'Hong Kong'}, { name: 'Jamaica'}, { name: 'Minsk'}, { name: 'Moscow'}, { name: 'Mensk'}, { name: 'Mascow'}]
+    @tags = ActsAsTaggableOn::Tag.all
     @options = { theme: 'facebook', tokenValue: 'name', allowCustomEntry: true, preventDuplicates: true, minChars: 2 }
   end
 

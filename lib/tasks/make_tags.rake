@@ -1,0 +1,50 @@
+namespace :db do
+  desc "make tags"
+  task upload_tags: :environment do
+    upload_tags   
+  end
+end
+
+def upload_tags
+  ActsAsTaggableOn::Tag.create(name: "Java", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "C#", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Python", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: ".Net", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Spring", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Rails", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Rails new", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Rails 4.2", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Rails 5", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Rails 3", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "js", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "javascript", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "coffeescript", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "jquery", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "math", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "HTML", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Css", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "SCSS", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Windows", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Linux", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Ubuntu", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "struct", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "function", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Inheritance", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Encapsulation", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Polymorphism", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Class", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Module", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "self.method", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "static", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "private", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "public", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "protected", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "question", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Spring", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Swing", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "Form", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "WindowsForms", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "WPF", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "dynamic", taggings_count: 0)
+  ActsAsTaggableOn::Tag.create(name: "object", taggings_count: 0)
+end

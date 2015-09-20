@@ -21,28 +21,3 @@
 //= require turbolinks
 //= require_tree .
 
-
-
-$(function() {
-  init();
-  $(document).ready(function () {
-  // alert("ready")
-  });
-
-  $(document).on('page:load', ready);
-  $('.editable').editable()
-
-});
-
-
-
-function ready(){
- // alert("load");
-}
-
-function init() {
-  $(".EditAnswerLink").click(function () {
-  //  alert("click");
-  });
-  //alert("init");
-}

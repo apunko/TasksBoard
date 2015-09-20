@@ -8,7 +8,7 @@
     <%= render "task_form"%>
   </div>
   <div class="col-xs-3">
-    <%= link_to 'Delete', task_path(@task), method: :delete %>
+    <%= link_to 'Delete', task_path(@task), method: :delete, data: { confirm: "Are you sure?" } %>
     <div id = "answers">
       <div class="col-xs-8">
         <%= render "answers/index"%>

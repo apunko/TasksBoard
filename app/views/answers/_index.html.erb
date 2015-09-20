@@ -3,7 +3,7 @@
   <% @task.answers.each do |answer|%>
     <li> 
       <%= answer.value %> | 
-      <%= link_to 'Delete', answer_path(answer), method: :delete %> |
+      <%= link_to 'Delete', answer_path(answer), method: :delete, data: { confirm: "Are you sure?" } %> |
       <%= link_to 'Edit', edit_answer_path(answer), remote: true, class: "EditAnswerLink", id: answer.id %>  
     </li>
   <% end %>

@@ -24,7 +24,8 @@ asdfasdf
       <div class="well">
         <% if current_user.my_comment?(comment) %>
           <button class="close">&times;</button>
-          <%= link_to 'Delete', comment_path(comment), method: :delete, class: "hidden" %> 
+          <%= link_to 'Delete', comment_path(comment), method: :delete, 
+                      class: "hidden", data: { confirm: "Are you sure?" } %> 
         <% end %>
         <%= link_to comment.user.name, user_path(comment.user) %><br>
         <%= comment.message %>
@@ -39,7 +40,7 @@ asdfasdf
     <div "row">
       <div class="col-xs-9">
         <% if my_task %>
-          | <%= link_to 'Delete', task_path(@task), method: :delete %> 
+          | <%= link_to 'Delete', task_path(@task), method: :delete, data: { confirm: "Are you sure?" } %> 
           | <%= link_to 'Edit', edit_task_path(@task), data: { no_turbolink: true } %>
           <div id = "answers">
             <%= render "answers/index"%>

@@ -7,31 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body class = "center">
-<!-- <div>
-  <span class="notice"><%= notice %></span>
-  <span class="alert"><%= alert %></span>
-</div> -->
-<% if user_signed_in? %>
-  Welcome <%= current_user.email %>!
   <%= render "layouts/navbar" %>
-<% else %>
-  <%= link_to 'Sign in', new_user_session_path %> or <%= link_to 'Sing up', new_user_registration_path %>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-  <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
-  <%= link_to "Sign in with Vk", user_omniauth_authorize_path(:vkontakte) %>
-<% end %>
-<% if flash[:notice] %>
-  <div class="alert alert-info" role="alert"><%= flash[:notice] %></div>
-<% end %>
-<% if flash[:message] %>
-  <div class="alert alert-info" role="alert"><%= flash[:message] %></div>
-<% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-info" role="alert"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:message] %>
+    <div class="alert alert-info" role="alert"><%= flash[:message] %></div>
+  <% end %>
+  <% if flash[:error] %>
+    <% flash[:error].each do |key, value|%>
+      <div class="alert alert-danger" role="alert"><b><%= key.to_s.capitalize + " " + value.join(", ") %></b></div>
+    <% end %>
+  <% end %>
 
-
-<!-- <div class="alert alert-info" role="alert"><%= notice %></div>
-<div class="alert alert-warning" role="alert"><%= alert %></div>
-<div class="alert alert-warning" role="alert"><%= flash[:message] %></div> -->
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>

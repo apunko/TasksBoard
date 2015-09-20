@@ -5,4 +5,5 @@ if (editAnswerDiv.hasClass("EditAnswerDiv")) {
   $('a#' + <%= @answer.id%>).after($('<div class="EditAnswerDiv">').
     append("<%= escape_javascript(render('edit')) %>"));
 }
-
+$(".alert").hide();
+$("input.optional").attr('autocomplete', 'off');

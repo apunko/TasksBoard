@@ -1,3 +1,4 @@
+
 var afterAnswerAttemptButtonElement = $('.AnswerAttempt').next();
 if (afterAnswerAttemptButtonElement.hasClass("AnswerForm")) {
   afterAnswerAttemptButtonElement.remove();
@@ -5,3 +6,5 @@ if (afterAnswerAttemptButtonElement.hasClass("AnswerForm")) {
   $('.AnswerAttempt').after($('<div class="AnswerForm">').
     append("<%= escape_javascript(render('new')) %>"));
 }
+$(".alert").hide();
+$("input.optional").attr('autocomplete', 'off');
