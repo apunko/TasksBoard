@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
   after_action :check_next_achievements, only: :create
 
   def create
