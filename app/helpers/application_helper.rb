@@ -16,4 +16,22 @@ module ApplicationHelper
   def most_used_tags
     ActsAsTaggableOn::Tag.most_used(20)
   end
+
+  def generate_tasks_by_query(query)
+    comments = Comment.search query
+    tags = Tag.search query
+    query_tasks = Task.search query
+        
+    Task.tagged_with(query).each do |task|
+      query_tasks << task
+    end
+
+    comments.each do |comment|
+      task = Task.find(comment.task_id)
+      if task
+        query_tasks << task
+      end 
+    end 
+    query_tasks
+  end
 end

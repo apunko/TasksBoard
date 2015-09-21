@@ -1,0 +1,14 @@
+<h2>TasksBoard is:</h2>
+<ol>
+  <li> <b><%= User.count %></b> users! </li>
+  <li> <b><%= Task.count %></b> tasks! </li>
+  <li> <b><%= Comment.count %></b> comments! </li>
+  <li> <b><%= AnswerAttempt.count %></b> attempts to answer! </li>
+  <li> <b><%= AnswerAttempt.where(result: true).count %></b> right answers! </li>
+</ol>
+<h2>Top rated users:</h2>
+<% @users = User.order(rate: :desc).limit(3)%>
+<%= render "users/index" %> 
+<h2>Last added tasks:</h2>
+<% @tasks = Task.order(created_at: :desc).limit(3)%>
+<%= render "tasks/index" %>  

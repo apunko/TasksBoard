@@ -1,5 +1,4 @@
 class RatingsController < ApplicationController
-
   def create
     @rating = Rating.create(rating_params)
     @task = Task.find(current_task_id)

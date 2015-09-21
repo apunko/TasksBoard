@@ -1,6 +1,4 @@
 class CommentsController < ApplicationController
-  include TasksHelper
-  before_action :authenticate_user!
   after_action :check_next_achievements, only: :create
 
   def create
@@ -10,7 +8,8 @@ class CommentsController < ApplicationController
       if comment.save
         format.html { redirect_to @task }
       else
-        format.html { redirect_to @task, notice: "Can't add comment" }
+        flash[:error] = comment.errors.messages
+        format.html { redirect_to @task }
       end
     end
   end

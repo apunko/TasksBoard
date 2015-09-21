@@ -1,6 +1,4 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!
-
   def edit
     @answer = Answer.find(params[:id])
     respond_to do |format|
@@ -28,10 +26,11 @@ class AnswersController < ApplicationController
     @task = Task.find(params[:answer][:task_id])
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to task_url(params[:answer][:task_id]), notice: 'Thanks for adding answer!' } 
+        format.html { redirect_to @task, notice: 'Thanks for adding answer!' } 
         format.js 
       else
         format.html {render :new}
+        format.js
       end
     end
   end

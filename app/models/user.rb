@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   validates :name, uniqueness: true
 
+  before_validation :set_default_name_as_email
   after_create :gain_welcome_achievement
 
   paginates_per 10
@@ -29,11 +30,7 @@ class User < ActiveRecord::Base
 
   def rate_task?(task) 
     rate = Rating.find_by(task_id: task.id, user_id: self.id)
-    if rate 
-      return true
-    else
-      return false
-    end  
+    rate ? true : false 
   end
 
   def solved?(task)
@@ -62,8 +59,11 @@ class User < ActiveRecord::Base
   end
 
   private 
-
   def gain_welcome_achievement
-    AchievingRecord.create(user_id: current_user.id, achievement_id: 1, amount: 1)
+    Achievement.add_welcom_achievement(current_user.id)
+  end
+
+  def set_default_name_as_email
+    self.name = self.email if self.name == "default"
   end
 end

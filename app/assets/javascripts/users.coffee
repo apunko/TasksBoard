@@ -3,3 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $('.editable').editable()
+  $('.commentField').keyup (e) ->
+    if e.which is 13 and !e.shiftKey
+      $('form#commentform').submit()

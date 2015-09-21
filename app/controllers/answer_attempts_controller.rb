@@ -1,7 +1,7 @@
 class AnswerAttemptsController < ApplicationController
   include AnswerAttemptsHelper
+  include TasksHelper
   
-  before_action :authenticate_user!, only: [:new, :create]
   after_action :check_next_achievements, only: :create
   
   def new
