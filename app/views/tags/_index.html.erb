@@ -1,0 +1,5 @@
+<div class="tags">
+  <% @tags.each do |tag| %> 
+    <%= link_to tag.name, { :controller => :application, :action => :search, :q => tag.name } %> 
+  <% end %>
+</div>

@@ -1,9 +1,5 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  #before_action :my_answer?, only: [:edit, :update, :destroy]
-
-  def index
-  end
 
   def edit
     @answer = Answer.find(params[:id])
@@ -27,9 +23,6 @@ class AnswersController < ApplicationController
     @answer = Answer.new
   end
 
-  def show
-  end
-
   def create
     @answer = Answer.new(answer_params)
     @task = Task.find(params[:answer][:task_id])
@@ -51,9 +44,8 @@ class AnswersController < ApplicationController
   end
 
   private
-
-    def answer_params
-      params.require(:answer).permit(:value, :task_id)
-    end
+  def answer_params
+    params.require(:answer).permit(:value, :task_id)
+  end
 
 end

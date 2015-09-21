@@ -1,0 +1,14 @@
+<% if my_task?(@task, current_user) %>
+  <%= link_to 'Delete', task_path(@task), method: :delete, data: { confirm: "Are you sure?" } %> | 
+  <%= link_to 'Edit', edit_task_path(@task), data: { no_turbolink: true } %>
+  <div id = "answers">
+    <%= render "answers/index"%>
+    <%= render "answers/add_button"%>
+  </div>
+<% else %>
+  <% if !current_user.solved?(@task)%>
+    <%= link_to "Answer", new_answer_attempt_path, remote: true, class: "AnswerAttempt" %>
+  <% else %>
+    <%= image_tag("done.png") %>
+  <% end %>
+<% end %>

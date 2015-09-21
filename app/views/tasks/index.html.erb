@@ -5,20 +5,8 @@
     </div>
   </div>
   <div class="col-xs-6">
-    <ul>
-      <% @tasks.each do |task| %>
-        <li>
-          <%= link_to task.title, task_path(task) %> | 
-          <%= task.user.email %> |
-          <%= link_to 'View', task_path(task) %> 
-          <% if my_task?(task, current_user) %>
-            | <%= link_to 'Edit', edit_task_path(task), data: { no_turbolink: true } %>
-            | <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: "Are you sure?" }%>
-          <% end %>
-        </li>
-      <% end %>
-      <%= paginate @tasks %>
-    </ul>
+    <%= render "index" %>
+    <%= paginate @tasks %>
   </div>
   <div class="col-xs-3">
     <%= link_to 'Create task', new_task_path, data: { no_turbolink: true } %>

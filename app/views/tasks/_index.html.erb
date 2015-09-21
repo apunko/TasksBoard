@@ -1,0 +1,14 @@
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= link_to task.title, task_path(task), data: { no_turbolink: true }  %> | 
+      <%= Rating.average_rating(task.id)%><%= image_tag("star-on.png") %> |
+      <%= task.user.name %> |
+      <%= link_to 'View', task_path(task), data: { no_turbolink: true }  %> 
+      <% if my_task?(task, current_user) %>
+        | <%= link_to 'Edit', edit_task_path(task), data: { no_turbolink: true } %>
+        | <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: "Are you sure?" }%>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

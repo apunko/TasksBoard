@@ -7,12 +7,8 @@ class Rating < ActiveRecord::Base
     result = 0.0;
     if ratings
       sum = 0
-      ratings.each do |rate|
-        sum += rate.score
-      end
-      if ratings.length > 0
-        result = (sum / ratings.length).round(2)
-      end
+      ratings.each { |rate| sum += rate.score }
+      result = (sum / ratings.length).round(2) if ratings.length > 0
     end
     result
   end

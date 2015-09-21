@@ -1,31 +1,20 @@
 <div class="row">
   <div class="col-xs-2">
     <div class="col-xs-offset-1">
-      <%= @user.rate %>
-      Show now!
       <h3> <%= editable @user, :name %></h3>
-      <%= @user.email %>
+      Rate: <%= @user.rate %> <br>
       <% if current_user.id == @user.id %>
         <%= link_to 'Create task', new_task_path, data: { no_turbolink: true } %>
       <% end %>
     </div>
   </div>
-  <div class="col-xs-7">
-    <% achievements = @user.get_achievements %>
-    <% achievements.each do |achievement| %>
-      <%= image_tag(achievement.image_url) %>
-    <% end %>
+  <div class="col-xs-5">
+    <% @achievements = @user.get_achievements %>
+    <%= render "user_achievements"%>
   </div>
-  <div class="col-xs-3">
+  <div class="col-xs-5">
     <h2>Own Tasks:</h2>
-    <%  tasks = @user.tasks %>
-    <% tasks.each do |task| %>
-      <ul>
-        <li>
-          <%= link_to task.title, task_path(task) %> 
-          <%= Rating.average_rating(task.id)%><%= image_tag("star-on.png") %>
-        </li>
-      </ul>
-    <% end %>
+    <% @tasks = @user.tasks %>
+    <%= render "tasks/index" %>
   </div>
 </div>

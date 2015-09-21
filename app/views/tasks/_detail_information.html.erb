@@ -1,0 +1,5 @@
+<% @tags = @task.tags %>
+<% render "tags/index" %>
+<p> <%= markdown(@task.description) %> </p>
+<% @comments = @task.comments %>
+<%= render "comments/index" %>

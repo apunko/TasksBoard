@@ -1,0 +1,14 @@
+<% @comments.each do |comment|%>
+  <div class="well">
+    <% if current_user.my_comment?(comment) %>
+      <button class="close">&times;</button>
+      <%= link_to 'Delete', comment_path(comment), method: :delete, 
+                  class: "hidden", data: { confirm: "Are you sure?" } %> 
+    <% end %>
+    <%= link_to comment.user.name, user_path(comment.user) %><br>
+    <%= comment.message %>
+  </div>  
+<% end %>
+<div>
+  <%= render "comments/new" %>
+</div>
