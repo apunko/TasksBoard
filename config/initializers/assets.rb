@@ -6,6 +6,7 @@ Rails.application.config.assets.precompile += %w( markitup/skins/markitup/bg-con
 ActsAsTaggableOn.force_binary_collation = true
 Rails.application.config.assets.precompile += %w( editable/loading.gif )
 Rails.application.config.assets.precompile += %w( editable/clear.png )
+Rails.application.config.assets.precompile += %w( bootstrap_light.min.css )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

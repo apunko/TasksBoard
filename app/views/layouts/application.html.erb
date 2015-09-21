@@ -3,6 +3,9 @@
 <head>
   <title>Hope</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <% if (user_signed_in? && current_user.style == 1) %>
+    <%= stylesheet_link_tag 'bootstrap_light.min.css' %>
+  <% end %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>

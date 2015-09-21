@@ -2,14 +2,15 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root to: "application#home"
-  get '/search', to: 'application#search'
-  get '/download_image', to: 'application#download_image', as: :download_image
   resources :tasks 
   resources :answers
   resources :ratings, only: :create
   resources :comments, only: [:create, :destroy]
   resources :users, only: [:index, :show, :update]
   resources :answer_attempts, only: [:index, :new, :create]
+  get '/search', to: 'application#search'
+  get '/download_image', to: 'application#download_image', as: :download_image
+  get '/change_style', to: 'users#change_style', as: :change_style
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
