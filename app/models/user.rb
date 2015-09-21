@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :achieving_records
   has_many :achievements, through: :achieving_records
 
+  validates :name, uniqueness: true
+
   after_create :gain_welcome_achievement
 
   paginates_per 10
@@ -27,9 +29,6 @@ class User < ActiveRecord::Base
 
   def rate_task?(task) 
     rate = Rating.find_by(task_id: task.id, user_id: self.id)
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    puts rate.class
-    puts rate
     if rate 
       return true
     else

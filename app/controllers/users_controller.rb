@@ -7,11 +7,11 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     respond_to do |format|
       if user.update(user_params)
-        format.html { redirect_to user, notice: 'Employee was successfully updated.' }
-        format.json { render :json => {:message => "Success" } }
+        format.html { redirect_to user, notice: 'Was successfully updated.' }
+        format.json { render :json => { :message => "Success" } }
       else
         format.html { render :edit }
-        format.json { render json: user.errors, status: :unprocessable_entity }
+        format.json { render :json => { :error => user.errors } }
       end
     end
   end

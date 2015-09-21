@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   include TasksHelper
 
   after_action :check_next_achievements, only: :create

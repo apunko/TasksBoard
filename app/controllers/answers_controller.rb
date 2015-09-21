@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+  before_action :authenticate_user!
   #before_action :my_answer?, only: [:edit, :update, :destroy]
 
   def index
